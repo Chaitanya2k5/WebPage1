@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up & Login</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #8cabc9, #8cabc9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #758790;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #4FC3F7;
+        }
+        .toggle {
+            background: none;
+            border: none;
+            color: #0277BD;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="register">
+        <h2>Sign Up</h2>
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="text" id="branch" placeholder="Branch" required>
+        <input type="text" id="section" placeholder="Section" required>
+        <input type="text" id="year" placeholder="Year" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <input type="password" id="confirm_password" placeholder="Confirm Password" required>
+        <button onclick="register()">Sign Up</button>
+        <button class="toggle" onclick="toggleForm()">Already have an account? Login</button>
+    </div>
+
+    <script>
+        let users = [];
+
+        function register() {
+            let name = document.getElementById('name').value.trim();
+            let branch = document.getElementById('branch').value.trim();
+            let section = document.getElementById('section').value.trim();
+            let year = document.getElementById('year').value.trim();
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirm_password').value;
+
+            if (!name || !branch || !section || !year || !password || !confirmPassword) {
+                alert('All fields are required!');
+                return;
+            }
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            users.push({ Name: name, Branch: branch, Section: section, Year: year, Password: password });
+            saveToExcel(users);
+        }
+
+        function saveToExcel(users) {
+            let ws = XLSX.utils.json_to_sheet(users);
+            let wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Users");
+
+            let wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+            let blob = new Blob([wbout], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            let a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'users.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            alert('Registration Successful! Redirecting to Loginpage...');
+            window.location.href = 'Loginpage.html';
+        }
+    </script>
+</body>
+</html>

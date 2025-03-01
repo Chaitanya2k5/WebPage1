@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8cabc9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            margin: 20px 0;
+        }
+        .navbar a {
+            text-decoration: none;
+        }
+        .navbar button {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #4b0082, #0000ff);
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .container {
+            background: white;
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #333;
+        }
+        .resume-link {
+            color: #ff4500;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .resume-link:hover {
+            text-decoration: underline;
+        }
+        .logout-btn {
+            background: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .logout-btn:hover {
+            background: #dc143c;
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="Registrationpage.html" target="_blank">
+            <button>Register</button>
+        </a>
+        <a href="Loginpage.html" target="_blank">
+            <button>Login</button>
+        </a>
+        <button class="logout-btn" onclick="exitPage()">Exit</button>
+    </div>
+
+    <div class="container">
+        <h2>Welcome to My Website</h2>
+        <p>This website provides personal information and access to my resume.</p>
+        <p><strong>Name:</strong> G. Chaitanya</p>
+        <p><strong>Section:</strong> I</p>
+        <p><strong>Branch:</strong> CSE Core</p>
+        <p><strong>Year:</strong> 2nd Year</p>
+        <p><a href="https://drive.google.com/file/d/1THLPgmWUFCb7IsepSZez_l7qkTp10CvP/view?usp=drivesdk" target="_blank">View Resume</a></p>
+    </div>
+
+    <script>
+        function exitPage() {
+            alert("Thank you for visiting!");
+            window.close(); // Attempts to close the tab
+        }
+    </script>
+     
+</body>
+</html>
